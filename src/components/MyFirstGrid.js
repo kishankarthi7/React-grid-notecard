@@ -1,7 +1,7 @@
 import GridLayout from 'react-grid-layout';
 import React from 'react';
-import '../../node_modules/react-grid-layout';
-import '../../node_modules/react-resizable';
+import '../../node_modules/react-grid-layout/css/styles.css';
+import '../../node_modules/react-resizable/css/styles.css';
 import NoteCard from './NoteCard';
 
 class MyFirstGrid extends React.Component {
@@ -17,19 +17,19 @@ class MyFirstGrid extends React.Component {
       >
         <div
           key="a"
-          data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: false }}
+          data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: true }}
         >
           <NoteCard />
         </div>
         <div
           key="b"
-          data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: false }}
+          data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: true }}
         >
           <NoteCard />
         </div>
         <div
           key="c"
-          data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: false }}
+          data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: true }}
         >
           <NoteCard />
         </div>
