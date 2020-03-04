@@ -41,12 +41,14 @@ textarea {
 }
 
 .note-header {
+  text-align: center;
   margin-bottom: 0.4em;
   width: 85%;
   z-index: 999;
 }
 .note-content {
   z-index: 999;
+  width: 100%;
 }
 
 body {

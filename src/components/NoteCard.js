@@ -16,7 +16,12 @@ class NoteCard extends React.Component {
         </div>
 
         <div className="field">
-          <textarea className="note-content" placeholder="Note to self...">
+          <textarea
+            rows="6"
+            className="note-content"
+            placeholder="Note to self..."
+            maxlength="50"
+          >
             {this.state.postBody}
           </textarea>
         </div>
