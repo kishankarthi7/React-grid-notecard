@@ -1,26 +1,27 @@
 import React from 'react';
 
 class NoteCard extends React.Component {
-  render() {
-    const noteCardEntry = this.props;
+  state = { postTitle: '', postBody: '' };
 
+  render() {
     return (
-      <div className="card-big-shadow">
-        <div
-          className="card card-just-text"
-          data-background="color"
-          data-color="orange"
-          data-radius="none"
-        >
-          <div className="content">
-            <h6 className="category">Todays Note's</h6>
-            <h4 className="title">{noteCardEntry.heading}</h4>
-            <p className="description">{noteCardEntry.description}</p>
-          </div>
+      <div className="note-card">
+        <div className="note-header">
+          <input
+            type="text"
+            placeholder="Post the Note"
+            value={this.state.postTitle}
+            onChange={event => this.setState({ postTitle: event.target.value })}
+          />
+        </div>
+
+        <div className="field">
+          <textarea className="note-content" placeholder="Note to self...">
+            {this.state.postBody}
+          </textarea>
         </div>
       </div>
     );
   }
 }
-
 export default NoteCard;

@@ -1,39 +1,41 @@
 import GridLayout from 'react-grid-layout';
 import React from 'react';
-import GridLayoutItems from './GridLayoutItems';
 import '../../node_modules/react-grid-layout';
 import '../../node_modules/react-resizable';
+import NoteCard from './NoteCard';
 
 class MyFirstGrid extends React.Component {
   render() {
     return (
-      <GridLayout className="layout" cols={12} rowHeight={30} width={1200}>
-        <div key="a" data-grid={{ x: 0, y: 0, w: 1, h: 2, static: true }}>
-          a
+      <GridLayout
+        className="layout"
+        cols={4}
+        rowHeight={30}
+        width={1200}
+        draggableCancel="input, textarea"
+        compactType="horizontal"
+      >
+        <div
+          key="a"
+          data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: false }}
+        >
+          <NoteCard />
         </div>
-        <div key="b" data-grid={{ x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 }}>
-          b
+        <div
+          key="b"
+          data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: false }}
+        >
+          <NoteCard />
         </div>
-        <div key="c" data-grid={{ x: 4, y: 0, w: 1, h: 2 }}>
-          c
+        <div
+          key="c"
+          data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: false }}
+        >
+          <NoteCard />
         </div>
       </GridLayout>
     );
   }
 }
-
-/* 
-
-<GridLayoutItems
-          key="a"
-          dataGrid={{ x: 0, y: 0, w: 1, h: 2, static: true }}
-        />
-        <GridLayoutItems
-          key="b"
-          dataGrid={{ x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 }}
-        />
-        <GridLayoutItems key="c" dataGrid={{ x: 4, y: 0, w: 1, h: 2 }} />
-
-*/
 
 export default MyFirstGrid;
