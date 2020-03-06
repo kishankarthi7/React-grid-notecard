@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
 .note-card {
   line-height: 1;
   text-align: center;
@@ -52,5 +57,11 @@ textarea {
 }
 
 body {
-  background-color: #12a4d9;
+  background-color: #e8e8e8;
+}
+
+.map {
+  margin-top: 20px;
+  width: 200px;
+  height: 200px;
 }

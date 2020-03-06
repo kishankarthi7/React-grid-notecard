@@ -3,6 +3,7 @@ import React from 'react';
 import '../../node_modules/react-grid-layout/css/styles.css';
 import '../../node_modules/react-resizable/css/styles.css';
 import NoteCard from './NoteCard';
+import MapLeaflet from './MapLeaflet';
 
 class MyFirstGrid extends React.Component {
   render() {
@@ -27,11 +28,12 @@ class MyFirstGrid extends React.Component {
         >
           <NoteCard />
         </div>
+
         <div
           key="c"
           data-grid={{ x: 0, y: 0, w: 0.9, h: 7.25, isResizable: true }}
         >
-          <NoteCard />
+          <MapLeaflet />
         </div>
       </GridLayout>
     );

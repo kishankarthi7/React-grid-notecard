@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-//import NoteCardList from './components/NoteCardList';
 import MyFirstGrid from './components/MyFirstGrid';
 
 function App() {
