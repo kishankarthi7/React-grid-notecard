@@ -60,8 +60,14 @@ body {
   background-color: #e8e8e8;
 }
 
-.map {
+#map {
   margin-top: 20px;
-  width: 200px;
-  height: 200px;
+  width: 85%;
+  height: 85%;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.map-container {
+  background-color: 1px solid gray;
 }

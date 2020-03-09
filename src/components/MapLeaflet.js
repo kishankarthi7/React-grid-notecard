@@ -10,8 +10,9 @@ class MapLeaflet extends React.Component {
 
   render() {
     const position = [this.state.lat, this.state.lng];
+
     return (
-      <Map className="map" center={position} zoom={this.state.zoom}>
+      <Map id="map" center={position} zoom={this.state.zoom}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
