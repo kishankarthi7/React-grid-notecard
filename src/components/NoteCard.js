@@ -7,6 +7,7 @@ class NoteCard extends React.Component {
     return (
       <div className="note-card">
         <div className="note-header">
+          <h3>Notes</h3>
           <input
             type="text"
             placeholder="Post the Note"
