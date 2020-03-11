@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import MyFirstGrid from './components/MyFirstGrid';
+import NoteApp from './components/NoteApp';
 
-function App() {
-  return (
-    <div className="container">
-      <MyFirstGrid />
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return <NoteApp />;
+  }
 }
 
 export default App;
