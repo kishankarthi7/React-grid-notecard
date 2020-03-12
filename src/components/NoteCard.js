@@ -5,7 +5,7 @@ class NoteCard extends React.Component {
 
   render() {
     return (
-      <div className="note-card">
+      <div className="note-card" data-grid={this.props.datagrid}>
         <div className="note-header">
           <h3>Notes</h3>
           <input

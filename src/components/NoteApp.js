@@ -7,12 +7,18 @@ class NoteApp extends React.Component {
     super(props);
     this.state = {
       numberOfNotecards: 0,
+      notecardDataGridArray: [],
     };
   }
 
   addNoteCard = () => {
-    this.setState(state => {
-      return { numberOfNotecards: state.numberOfNotecards + 1 };
+    this.setState(prevState => {
+      return {
+        notecardDataGridArray: [
+          ...prevState.notecardDataGridArray,
+          { x: 0, y: 0, w: 0.9, h: 7.25, isResizable: true },
+        ],
+      };
     });
   };
 
@@ -20,7 +26,7 @@ class NoteApp extends React.Component {
     return (
       <div className="container">
         <CreateNotecardForm addNoteCard={this.addNoteCard} />
-        <NoteCardList numberOfNotecards={this.state.numberOfNotecards} />
+        <NoteCardList notecardDataGrids={this.state.notecardDataGridArray} />
       </div>
     );
   }

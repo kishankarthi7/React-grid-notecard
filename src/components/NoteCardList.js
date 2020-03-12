@@ -1,9 +1,13 @@
 import React from 'react';
+import NoteCard from './NoteCard';
 
-class NoteCardList extends React.Component {
-  render() {
-    return <h3>{this.props.numberOfNotecards}</h3>;
-  }
+function NoteCardList(props) {
+  return (
+    <div>
+      {props.notecardDataGrids.map(datagrid => (
+        <NoteCard datagrid={datagrid} />
+      ))}
+    </div>
+  );
 }
-
 export default NoteCardList;
