@@ -10,10 +10,16 @@ class NoteApp extends React.Component {
     };
   }
 
+  addNoteCard = () => {
+    this.setState(state => {
+      return { numberOfNotecards: state.numberOfNotecards + 1 };
+    });
+  };
+
   render() {
     return (
       <div className="container">
-        <CreateNotecardForm />
+        <CreateNotecardForm addNoteCard={this.addNoteCard} />
         <NoteCardList numberOfNotecards={this.state.numberOfNotecards} />
       </div>
     );
