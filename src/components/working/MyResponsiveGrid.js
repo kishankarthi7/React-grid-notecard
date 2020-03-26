@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../../node_modules/react-resizable/css/styles.css';
 import '../../../node_modules/react-grid-layout/css/styles.css';
+import '../../../node_modules/react-resizable/css/styles.css';
 import RGL, { WidthProvider } from 'react-grid-layout';
 import Card from './Card';
 
@@ -32,14 +32,14 @@ class MyResponsiveGrid extends React.Component {
     isResizable: false,
     items: 50,
     cols: 12,
-    rowHeight: 330,
+    rowHeight: 100,
     onLayoutChange: function() {},
   };
 
   generateDOM = () => {
     return this.props.items.map(i => {
       return (
-        <div key={i} className="grid-items card">
+        <div key={i}>
           <Card deleteCardMethod={this.props.deleteCardMethod} id={i} />
         </div>
       );
@@ -54,17 +54,21 @@ class MyResponsiveGrid extends React.Component {
     // {lg: layout1, md: layout2, ...}
 
     return (
-      <ReactGridLayout
-        className="layout"
-        breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-        cols={4}
-        rowHeight={312}
-        width={1200}
-        layout={this.state.layout}
-        onLayoutChange={this.onLayoutChange}
-      >
-        {this.generateDOM()}
-      </ReactGridLayout>
+      <div className="my-responsive-grid">
+        <ReactGridLayout
+          className="layout"
+          breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+          cols={4}
+          rowHeight={310}
+          width={1200}
+          layout={this.state.layout}
+          onLayoutChange={this.onLayoutChange}
+          draggableHandle=".MyDragHandleClassName"
+          draggableCancel=".noneDraggable"
+        >
+          {this.generateDOM()}
+        </ReactGridLayout>
+      </div>
     );
   }
 }

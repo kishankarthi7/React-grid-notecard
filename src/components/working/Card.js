@@ -4,32 +4,30 @@ class Card extends React.Component {
   state = { postTitle: '', postBody: '' };
 
   handleClick = () => {
+    console.log('handleClick is called');
     this.props.deleteCardMethod(this.props.id);
   };
 
   render() {
     return (
-      <div className="note-card" data-grid={this.props.datagrid}>
-        <div className="note-header">
-          <h3>Notes</h3>
+      <div className="card MyDragHandleClassName">
+        <div className="card-header">
           <input
+            className="noneDraggable"
             type="text"
-            placeholder="Post the Note"
+            placeholder="Notes"
             value={this.state.postTitle}
             onChange={event => this.setState({ postTitle: event.target.value })}
           />
         </div>
-
-        <div className="field">
-          <textarea
-            rows="6"
-            className="note-content"
-            placeholder="Note to self..."
-          ></textarea>
+        <div className="card-content">
+          <textarea className="noneDraggable"></textarea>
         </div>
-        <button className="button" onClick={this.handleClick}>
-          DELETE
-        </button>
+        <div className="card-delete-button">
+          <button className="button" onClick={this.handleClick}>
+            DELETE
+          </button>
+        </div>
       </div>
     );
   }
