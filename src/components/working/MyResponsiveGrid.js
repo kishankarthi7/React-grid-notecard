@@ -11,6 +11,7 @@ class MyResponsiveGrid extends React.Component {
     super(props);
 
     const layout = this.generateLayout(this.props.items);
+
     this.state = { layout };
   }
 
@@ -40,14 +41,35 @@ class MyResponsiveGrid extends React.Component {
     return this.props.items.map(i => {
       return (
         <div key={i}>
-          <Card deleteCardMethod={this.props.deleteCardMethod} id={i} />
+          <Card
+            layout={this.state.layout}
+            deleteCardMethod={this.props.deleteCardMethod}
+            id={i}
+          />
         </div>
       );
     });
   };
 
+  saveLayoutToLocaleStorage = layout => {
+    localStorage.setItem('reactGridLayout', JSON.stringify(layout));
+    console.log('layout saved');
+  };
+
+  retrieveLayoutFromLocalStorage = () => {
+    console.log('retrieveLayoutFromLocalStorage called');
+
+    const outputValue = JSON.parse(localStorage.getItem('reactGridLayout'));
+    this.setState({ layout: outputValue });
+    console.log(outputValue);
+    return outputValue;
+  };
+
   onLayoutChange = layout => {
+    this.saveLayoutToLocaleStorage(layout);
     this.props.onLayoutChange(layout);
+    this.setState({ layout });
+    console.log(this.state.layout);
   };
 
   render() {
