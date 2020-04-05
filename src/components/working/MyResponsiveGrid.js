@@ -15,7 +15,7 @@ class MyResponsiveGrid extends React.Component {
     this.state = { layout };
   }
 
-  generateLayout = arr => {
+  generateLayout = (arr) => {
     return arr.map((item, index) => {
       return {
         i: index.toString(),
@@ -34,11 +34,11 @@ class MyResponsiveGrid extends React.Component {
     items: 50,
     cols: 12,
     rowHeight: 100,
-    onLayoutChange: function() {},
+    onLayoutChange: function () {},
   };
 
   generateDOM = () => {
-    return this.props.items.map(i => {
+    return this.props.items.map((i) => {
       return (
         <div key={i}>
           <Card
@@ -51,25 +51,43 @@ class MyResponsiveGrid extends React.Component {
     });
   };
 
-  saveLayoutToLocaleStorage = layout => {
-    localStorage.setItem('reactGridLayout', JSON.stringify(layout));
-    console.log('layout saved');
-  };
+  componentDidMount() {
+    console.log(' componentDidMount called / MyResponsiveGrid');
 
-  retrieveLayoutFromLocalStorage = () => {
-    console.log('retrieveLayoutFromLocalStorage called');
+    const retrievedLayout = JSON.parse(localStorage.getItem('reactGridLayout'));
 
-    const outputValue = JSON.parse(localStorage.getItem('reactGridLayout'));
-    this.setState({ layout: outputValue });
-    console.log(outputValue);
-    return outputValue;
-  };
+    if (retrievedLayout != null) {
+      this.setState({
+        layout: [...retrievedLayout],
+      });
+    }
+  }
 
-  onLayoutChange = layout => {
-    this.saveLayoutToLocaleStorage(layout);
+  componentDidUpdate() {
+    console.log('componentDidMount called / MyResponsiveGrid');
+
+    localStorage.setItem('reactGridLayout', JSON.stringify(this.state.layout));
+  }
+
+  // saveLayoutToLocaleStorage = layout => {
+  //   localStorage.setItem('reactGridLayout', JSON.stringify(layout));
+  //   console.log('layout saved');
+  // };
+
+  // retrieveLayoutFromLocalStorage = () => {
+  //   console.log('retrieveLayoutFromLocalStorage called');
+
+  //   const outputValue = JSON.parse(localStorage.getItem('reactGridLayout'));
+  //   console.log(JSON.parse(localStorage.getItem('reactGridLayout')));
+  //   this.setState({ layout: outputValue });
+  //   console.log(outputValue);
+  //   return outputValue;
+  // };
+
+  onLayoutChange = (layout) => {
+    //this.saveLayoutToLocaleStorage(layout);
     this.props.onLayoutChange(layout);
     this.setState({ layout });
-    console.log(this.state.layout);
   };
 
   render() {

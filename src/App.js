@@ -7,87 +7,76 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numberOfItems: localStorage.getItem('myNumberOfItems') || 0,
-      items: JSON.parse(localStorage.getItem('myItems')) || [],
+      numberOfItems: 0,
+      items: [],
     };
   }
 
   componentDidMount() {
-    console.log(' componentDidMount called');
-    localStorage.setItem(
-      'myNumberOfItems',
-      this.state.numberOfItems.toString(),
+    const retrievedNumberSaved = JSON.parse(
+      localStorage.getItem('numbersaved'),
     );
-    const myNumberOfItemsValue = parseInt(
-      localStorage.getItem('myNumberOfItems'),
-    );
-    console.log(typeof myNumberOfItemsValue);
-    console.log('myNumberOfItemsValue', myNumberOfItemsValue);
+    const retrievedItems = JSON.parse(localStorage.getItem('itemsaved'));
 
-    localStorage.setItem('myItems', JSON.stringify(this.state.items));
-    const myItemsValue = JSON.parse(localStorage.getItem('myItems'));
-    console.log(typeof myItemsValue);
-    console.log('myItemsValue', myItemsValue);
+    if (retrievedNumberSaved != null) {
+      this.setState({
+        numberOfItems: retrievedNumberSaved,
+      });
+    }
+
+    if (retrievedItems != null) {
+      this.setState({
+        items: [...retrievedItems],
+      });
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(
+      'numbersaved',
+      JSON.stringify(this.state.numberOfItems),
+    );
+
+    localStorage.setItem('itemsaved', JSON.stringify(this.state.items));
   }
 
   addCard = () => {
-    console.log(this.state.numberOfItems);
     this.addItems();
     this.addNumberOfItems();
-
-    localStorage.setItem(
-      'myNumberOfItems',
-      this.state.numberOfItems.toString(),
-    );
-    const myNumberOfItemsValue = parseInt(
-      localStorage.getItem('myNumberOfItems'),
-    );
-    console.log('myNumberOfItemsValue', myNumberOfItemsValue);
-
-    localStorage.setItem('myItems', JSON.stringify(this.state.items));
-    const myItemsValue = JSON.parse(localStorage.getItem('myItems'));
-    console.log('myItemsValue', myItemsValue);
   };
 
   addNumberOfItems = () => {
-    const value =
-      1 + this.state.numberOfItems === 0 ? 1 : this.state.numberOfItems;
-
-    this.setState(state => {
+    this.setState((prevState) => {
       return {
-        numberOfItems: value,
+        numberOfItems: prevState.numberOfItems + 1,
       };
     });
   };
 
   addItems = () => {
-    const valueOfNumberOfItems = this.state.numberOfItems;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
-        items: [...prevState.items, [valueOfNumberOfItems]],
+        items: [...prevState.items, [prevState.numberOfItems]],
       };
     });
   };
 
-  deleteCard = id => {
+  deleteCard = (id) => {
     this.deleteNumberOfItems(id);
     this.deleteItems(id);
-    localStorage.setItem('myname', JSON.stringify(this.state.items));
-    const value = JSON.parse(localStorage.getItem('myname'));
-    console.log('deleted' + value);
   };
 
-  deleteNumberOfItems = id => {
-    this.setState(state => {
+  deleteNumberOfItems = (id) => {
+    this.setState((state) => {
       return {
         numberOfItems: state.numberOfItems - 1,
       };
     });
   };
 
-  deleteItems = id => {
-    this.setState(prevState => ({
-      items: prevState.items.filter(el => el !== id),
+  deleteItems = (id) => {
+    this.setState((prevState) => ({
+      items: prevState.items.filter((el) => el !== id),
     }));
   };
 
