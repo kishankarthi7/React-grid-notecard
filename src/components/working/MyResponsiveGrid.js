@@ -40,7 +40,7 @@ class MyResponsiveGrid extends React.Component {
   generateDOM = () => {
     return this.props.items.map((i) => {
       return (
-        <div key={i}>
+        <div key={i} className="card">
           <Card
             layout={this.state.layout}
             deleteCardMethod={this.props.deleteCardMethod}
