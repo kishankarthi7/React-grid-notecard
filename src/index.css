@@ -20,18 +20,19 @@
 */
 .card {
   border: 4px solid black;
+  width: 100%;
   height: 100%;
   padding: 10px;
 }
 
 .card-header input {
-  width: 100%;
+  width: 95%;
   margin: 5px;
   padding: 2px;
 }
 
 .card-content textarea {
-  width: 100%;
+  width: 95%;
   margin: 5px;
   padding: 2px;
 }
@@ -40,6 +41,5 @@
   background-color: cadetblue;
   padding: 10px 20px;
   border-radius: 4px;
-  color: 9dbdc6;
   font-weight: bold;
 }

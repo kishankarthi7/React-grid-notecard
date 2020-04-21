@@ -2,7 +2,10 @@ import React from 'react';
 import ReactCardFlip from 'react-card-flip';
 
 class Card extends React.Component {
-  state = { isFlipped: false, postTitle: '', postBody: '' };
+  constructor(props) {
+    super(props);
+    this.state = { isFlipped: false, postTitle: '', postBody: '' };
+  }
 
   handleClick = () => {
     console.log('handleClick is called');
@@ -11,6 +14,7 @@ class Card extends React.Component {
 
   handleFlickClick = (e) => {
     e.preventDefault();
+
     this.setState((prevState) => ({ isFlipped: !prevState.isFlipped }));
   };
 
