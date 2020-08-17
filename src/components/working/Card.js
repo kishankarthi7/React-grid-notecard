@@ -1,58 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 
-class Card extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isFlipped: false, postTitle: '', postBody: '' };
-  }
+function Card(props) {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [postTitle, setPostTitle] = useState('');
 
-  handleClick = () => {
+  function handleClick() {
     console.log('handleClick is called');
-    this.props.deleteCardMethod(this.props.id);
-  };
-
-  handleFlickClick = (e) => {
-    e.preventDefault();
-
-    this.setState((prevState) => ({ isFlipped: !prevState.isFlipped }));
-  };
-
-  render() {
-    return (
-      <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="vertical">
-        <div>
-          <div className=" MyDragHandleClassName">
-            <div className="card-header">
-              <input
-                className="noneDraggable"
-                type="text"
-                placeholder="Notes"
-                value={this.state.postTitle}
-                onChange={(event) =>
-                  this.setState({ postTitle: event.target.value })
-                }
-              />
-            </div>
-            <div className="card-content">
-              <textarea className="noneDraggable"></textarea>
-            </div>
-            <div className="card-delete-button">
-              <button className="button" onClick={this.handleClick}>
-                DELETE
-              </button>
-            </div>
-          </div>
-
-          <button onClick={this.handleFlickClick}>Flick</button>
-        </div>
-        <div>
-          <p>Back</p>
-          <button onClick={this.handleFlickClick}>Flick</button>
-        </div>
-      </ReactCardFlip>
-    );
+    props.deleteCardMethod(props.id);
   }
+
+  function handleFlickClick(e) {
+    e.preventDefault();
+    setIsFlipped((prevIsFlipped) => !prevIsFlipped);
+  }
+
+  return (
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
+      <div>
+        <div className=" MyDragHandleClassName">
+          <div className="card-header">
+            <input
+              className="noneDraggable"
+              type="text"
+              placeholder="Notes"
+              value={postTitle}
+              onChange={(event) => setPostTitle(event.target.value)}
+            />
+          </div>
+          <div className="card-content">
+            <textarea className="noneDraggable"></textarea>
+          </div>
+          <div className="card-delete-button">
+            <button className="button" onClick={handleClick}>
+              DELETE
+            </button>
+          </div>
+        </div>
+
+        <button onClick={handleFlickClick}>Flick</button>
+      </div>
+      <div>
+        <p>Back</p>
+        <button onClick={handleFlickClick}>Flick</button>
+      </div>
+    </ReactCardFlip>
+  );
 }
 
 export default Card;
